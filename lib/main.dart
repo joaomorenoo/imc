@@ -24,8 +24,11 @@ class _MyWidgetState extends State<MyWidget> {
       double altura = double.parse(_altura.text);
       double peso = double.parse(_peso.text);
 
+      double alturametros = altura / 100;
+      print(alturametros);
+
       if (altura > 0) {
-        imc = peso / (altura * altura);
+        imc = peso / (alturametros * alturametros);
         if (imc < 18.5) {
           _texto = "Abaixo do peso normal";
         } else if (imc >= 18.5 && imc <= 24.9) {
@@ -40,7 +43,7 @@ class _MyWidgetState extends State<MyWidget> {
           _texto = "Obesidade classe III";
         }
       } else {
-        _texto = "Por favor, insira valores válidos";
+        _texto = "Insira valores válidos";
       }
     });
   }
@@ -61,7 +64,7 @@ class _MyWidgetState extends State<MyWidget> {
               ),
               TextField(
                 controller: _altura,
-                decoration: InputDecoration(hintText: "Altura (M)"),
+                decoration: InputDecoration(hintText: "Altura (CM)"),
                 keyboardType: TextInputType.number,
               ),
               TextField(
@@ -69,12 +72,8 @@ class _MyWidgetState extends State<MyWidget> {
                 decoration: InputDecoration(hintText: "Peso (KG)"),
                 keyboardType: TextInputType.number,
               ),
-              ElevatedButton(
-                  onPressed: calcular,
-                  child: Text("Calcular")),
-              Text(
-                "Seu IMC é:"
-              ),
+              ElevatedButton(onPressed: calcular, child: Text("Calcular")),
+              Text("Seu IMC é:"),
               Text(
                 imc.toStringAsPrecision(4),
               ),
