@@ -21,13 +21,13 @@ class _MyWidgetState extends State<MyWidget> {
 
   void calcular() {
     setState(() {
-      double altura = double.parse(_altura.text);
+      int altura = int.parse(_altura.text);
       double peso = double.parse(_peso.text);
 
       double alturametros = altura / 100;
       print(alturametros);
 
-      if (altura > 0) {
+      if (altura > 0 && altura < 280) {
         imc = peso / (alturametros * alturametros);
         if (imc < 18.5) {
           _texto = "Abaixo do peso normal";
